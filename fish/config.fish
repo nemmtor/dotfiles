@@ -1,12 +1,19 @@
 if status is-interactive
     # PATHS
+    export NODE_GYP_FORCE_PYTHON="/opt/homebrew/bin/python3.10"
     export NVM_PATH="$HOME/.nvm"
     export METEOR_PATH="$HOME/.meteor"
     export CARGO_PATH="$HOME/.cargo/bin"
     export GO_PATH="$HOME/go/bin"
     export WEZTERM_PATH="/Applications/WezTerm.app/Contents/MacOS"
     export VSCODE_PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-    set -x PATH $NVM_PATH:$METEOR_PATH:$CARGO_PATH:$GO_PATH:$WEZTERM_PATH:$VSCODE_PATH:$PATH
+    export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+    export ANDROID_EMULATOR="$ANDROID_HOME/emulator"
+    export ANDROID_PLATFORM="$ANDROID_HOME/platform-tools"
+    export ANDROID_SDK_BIN="$ANDROID_HOME/cmdline-tools/10.0/bin"
+    export RBENV_SHIMS="$HOME/.rbenv/shims"
+    set -x PATH $JAVA_HOME:$NODE_GYP_FORCE_PYTHON:$NVM_PATH:$METEOR_PATH:$CARGO_PATH:$GO_PATH:$WEZTERM_PATH:$VSCODE_PATH:$JAVA_HOME:$ANDROID_EMULATOR:$ANDROID_PLATFORM:$ANDROID_SDK_BIN:$RBENV_SHIMS:$PATH
 
     # GPG TTY
     set -gx GPG_TTY (tty)
@@ -39,6 +46,7 @@ if status is-interactive
     alias configs="cd ~/.config"
     alias mybrain="cd ~/my-brain"
 
+
     # config files
     alias nvimrc="vim ~/.config/nvim/init.lua"
     alias fishrc="vim ~/.config/fish/config.fish"
@@ -56,7 +64,10 @@ if status is-interactive
             -sound Crystal"
 end
 
-
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
