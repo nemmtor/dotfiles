@@ -1,0 +1,12 @@
+*
+!.gitignore
+!README.md
+!nvim
+!nvim/**
+!tmux
+!tmux/**
+tmux/plugins/**
+!wezterm
+!wezterm/**
+!fish
+!fish/config.fish
