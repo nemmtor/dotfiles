@@ -1,0 +1,10 @@
+*
+!.gitignore
+!nvim
+!nvim/**
+!wezterm
+!wezterm/**
+!fish
+!fish/config.fish
+
+
