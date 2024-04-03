@@ -12,7 +12,7 @@ return {
       hide_gitignored = true,
     }
     opts.window.position = "right"
-    opts.window.width = 50
+    opts.window.width = 40
     opts.window.mappings["<cr>"] = "open_with_window_picker"
     opts.window.mappings["s"] = "split_with_window_picker"
     opts.window.mappings["S"] = "vsplit_with_window_picker"

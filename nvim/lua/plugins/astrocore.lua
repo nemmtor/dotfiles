@@ -28,6 +28,7 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false, -- sets vim.opt.wrap
+        so = 5,
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
@@ -73,6 +74,7 @@ return {
           desc = "[S]earch [R]esume",
         },
         ["<F1>"] = { function() require("neo-tree.command").execute { toggle = true } end, desc = "Toggle Explorer" },
+        ["<F2>"] = { function() require("outline").toggle() end, desc = "Toggle Outline" },
         ["<F3>"] = {
           function()
             vim.cmd.UndotreeToggle()
