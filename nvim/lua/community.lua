@@ -7,7 +7,7 @@ return {
   -- lsp
   { import = "astrocommunity.lsp.ts-error-translator-nvim" },
   -- editing-support
-  { import = "astrocommunity.editing-support.refactoring-nvim" },
+  -- { import = "astrocommunity.editing-support.refactoring-nvim" },
   -- comment
   { import = "astrocommunity.comment.mini-comment" },
   -- packs

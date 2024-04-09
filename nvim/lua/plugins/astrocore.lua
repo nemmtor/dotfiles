@@ -57,7 +57,7 @@ return {
           desc = "[S]earch [G]rep [A]rgs",
         },
         ["<Leader>sgw"] = {
-          function() require("telescope").extensions.live_grep_args.grep_word_under_cursor() end,
+          function() require("telescope-live-grep-args.shortcuts").grep_word_under_cursor() end,
           desc = "[S]earch [G]rep [W]ord",
         },
         ["<Leader>sn"] = {
