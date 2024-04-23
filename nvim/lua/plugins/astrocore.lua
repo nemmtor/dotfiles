@@ -82,6 +82,10 @@ return {
           end,
           desc = "Toggle Undo Tree",
         },
+        ["<F4>"] = {
+          function() require("neotest").summary.toggle() end,
+          desc = "Toggle Tests Summary",
+        },
 
         ["<Leader>e"] = false,
         ["<Leader>c"] = false,
