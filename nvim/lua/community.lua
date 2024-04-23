@@ -8,8 +8,6 @@ return {
   { import = "astrocommunity.lsp.ts-error-translator-nvim" },
   -- editing-support
   -- { import = "astrocommunity.editing-support.refactoring-nvim" },
-  -- comment
-  { import = "astrocommunity.comment.mini-comment" },
   -- packs
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.typescript" },
