@@ -1,6 +1,8 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+  -- workflow
+  { import = "astrocommunity.workflow.hardtime-nvim" },
   -- colorschemes
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
