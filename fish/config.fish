@@ -13,6 +13,7 @@ if status is-interactive
     export ANDROID_PLATFORM="$ANDROID_HOME/platform-tools"
     export ANDROID_SDK_BIN="$ANDROID_HOME/cmdline-tools/10.0/bin"
     export RBENV_SHIMS="$HOME/.rbenv/shims"
+    export JAVA_HOME=$(/usr/libexec/java_home)
     set -x PATH $JAVA_HOME:$NODE_GYP_FORCE_PYTHON:$NVM_PATH:$METEOR_PATH:$CARGO_PATH:$GO_PATH:$WEZTERM_PATH:$VSCODE_PATH:$JAVA_HOME:$ANDROID_EMULATOR:$ANDROID_PLATFORM:$ANDROID_SDK_BIN:$RBENV_SHIMS:$PATH
 
     # GPG TTY

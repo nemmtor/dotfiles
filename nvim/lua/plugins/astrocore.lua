@@ -46,6 +46,10 @@ return {
         ["J"] = { "mzJ`z", desc = "Better merge lines" },
         ["n"] = { "nzzzv", desc = "Better search next" },
         ["N"] = { "Nzzzv", desc = "Better search prev" },
+        ["gra"] = false,
+        ["grn"] = false,
+        ["grr"] = false,
+        ["gr"] = function() require('telescope.builtin').lsp_references() end,
         ["<Leader>s"] = { desc = "[S]earch" },
         ["<Leader>sg"] = { function() require("telescope.builtin").live_grep() end, desc = "[S]earch [G]rep" },
         ["<Leader>sf"] = {
