@@ -3,6 +3,8 @@ return {
   "AstroNvim/astrocommunity",
   -- test
   { import = "astrocommunity.test.neotest" },
+  -- recipes
+  { import = "astrocommunity.recipes.telescope-lsp-mappings" },
   -- workflow
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
   -- colorschemes
