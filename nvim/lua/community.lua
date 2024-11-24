@@ -41,10 +41,10 @@ return {
   -- { import = "astrocommunity.editing-support.refactoring-nvim" },
   -- packs
   { import = "astrocommunity.pack.tailwindcss" },
-  { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.typescript-all-in-one" },
   -- { import = "astrocommunity.pack.terraform" },
   { import = "astrocommunity.pack.html-css" },
-  { import = "astrocommunity.pack.markdown" },
+  -- { import = "astrocommunity.pack.markdown" },
   -- { import = "astrocommunity.pack.angular" },
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.json" },

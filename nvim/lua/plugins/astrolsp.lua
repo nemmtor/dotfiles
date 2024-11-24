@@ -17,7 +17,7 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = false, -- enable or disable format on save globally
+        enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
@@ -41,6 +41,23 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      tailwindcss = {
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+              },
+            },
+          },
+        },
+      },
+      eslint = {
+        settings = {
+          workingDirectory = { mode = "auto" },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
@@ -50,7 +67,7 @@ return {
       -- the key is the server that is being setup with `lspconfig`
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
-      emmet_ls = false
+      emmet_ls = false,
     },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {

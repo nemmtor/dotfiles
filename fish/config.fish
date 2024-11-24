@@ -31,7 +31,7 @@ if status is-interactive
     alias gss="git status"
     alias gll="git log"
     alias gllo="git log --oneline"
-    alias gbb="git branch | cat"
+    alias gbb="git branch"
 
     # bin aliases
     alias ls="exa"
