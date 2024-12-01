@@ -67,6 +67,8 @@ if status is-interactive
             -title 'Break is over! Get back to work 😬'\
             -appIcon '~/Pictures/pumpkin.png'\
             -sound Crystal"
+    
+    alias dstore="fd -H -t f .DS_Store | xargs -I {} rm {}"
 end
 
 # tabtab source for packages
