@@ -62,7 +62,7 @@ return {
           "marksman",
           "tailwindcss",
           "vimls",
-          "clangd",
+          -- "clangd",
         },
       })
       require("mason-lspconfig").setup_handlers(handlers)
@@ -71,7 +71,7 @@ return {
           "prettier",
           "eslint_d",
           "stylua",
-          "clang-format",
+          -- "clang-format",
         },
       })
 
