@@ -28,6 +28,7 @@ if status is-interactive
     alias gllo="git log --oneline"
     alias gbb="git branch"
     alias lg="lazygit"
+    alias ld="lazydocker"
 
     # bin aliases
     alias ls="exa"

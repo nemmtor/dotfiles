@@ -62,16 +62,17 @@ return {
           "marksman",
           "tailwindcss",
           "vimls",
-          "clangd",
+          -- "clangd",
         },
       })
       require("mason-lspconfig").setup_handlers(handlers)
       require("mason-tool-installer").setup({
         ensure_installed = {
-          "prettier",
+          -- "prettier",
           "eslint_d",
+          -- "eslint-lsp",
           "stylua",
-          "clang-format",
+          -- "clang-format",
         },
       })
 

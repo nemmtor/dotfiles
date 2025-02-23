@@ -33,11 +33,15 @@ return {
       end,
     })
 
-    vim.keymap.set(
-      "n",
-      "<space>lc",
-      "<cmd>%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>",
-      { desc = "[L]sp [C]ode Fix" }
-    )
+    vim.keymap.set("n", "<space>lc", function()
+      -- Save current cursor position (row and column)
+      local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+
+      -- Run the linter fix command on the entire file
+      vim.cmd("%!eslint_d --stdin --fix-to-stdout --stdin-filename " .. vim.fn.expand("%"))
+
+      -- Restore the cursor position
+      pcall(vim.api.nvim_win_set_cursor, 0, { row, col })
+    end, { desc = "[L]sp [C]ode Fix" })
   end,
 }

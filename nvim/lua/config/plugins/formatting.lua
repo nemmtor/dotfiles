@@ -35,7 +35,7 @@ return {
 
     conform.setup({
       formatters_by_ft = formatters_by_ft,
-      format_on_save = format_settings,
+      -- format_on_save = format_settings,
     })
 
     vim.keymap.set("n", "<space>lf", function()
