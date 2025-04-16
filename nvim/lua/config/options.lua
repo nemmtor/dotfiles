@@ -11,3 +11,9 @@ vim.opt.wrap = false
 vim.opt.signcolumn = "yes:1"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true
+})

@@ -1,6 +1,5 @@
 return {
   "hedyhli/outline.nvim",
-  enabled = false,
   config = function()
     require("outline").setup({
       outline_window = {
