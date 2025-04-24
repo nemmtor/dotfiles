@@ -20,6 +20,9 @@ local handlers = {
     lspconfig.vtsls.setup({
       single_file_support = false,
       root_dir = lspconfig.util.root_pattern("package.json"),
+      on_attach = function(client, bufnr)
+       require("twoslash-queries").attach(client, bufnr)
+      end,
     })
   end,
   ["eslint"] = function()
@@ -33,6 +36,7 @@ local handlers = {
           mode = "auto",
         },
         options = {
+          -- only for eslint@9
           flags = { "unstable_config_lookup_from_file" },
         },
       },
