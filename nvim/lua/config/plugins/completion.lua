@@ -24,6 +24,11 @@ return {
         menu = {
           auto_show = false,
         },
+        accept = {
+          auto_brackets = {
+            enabled = false,
+          },
+        },
       },
     },
   },
