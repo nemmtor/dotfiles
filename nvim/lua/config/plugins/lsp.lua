@@ -1,65 +1,36 @@
-local handlers = {
-  function(server_name)
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
-    require("lspconfig")[server_name].setup({ capabilities })
-  end,
-  ["lua_ls"] = function()
-    local lspconfig = require("lspconfig")
-    lspconfig.lua_ls.setup({
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-        },
-      },
-    })
-  end,
-  ["vtsls"] = function()
-    local lspconfig = require("lspconfig")
-    lspconfig.vtsls.setup({
-      single_file_support = false,
-      root_dir = lspconfig.util.root_pattern("package.json"),
-      on_attach = function(client, bufnr)
-       require("twoslash-queries").attach(client, bufnr)
-      end,
-    })
-  end,
-  ["eslint"] = function()
-    local lspconfig = require("lspconfig")
-    lspconfig.eslint.setup({
-      settings = {
-        workingDirectory = {
-          mode = "auto",
-        },
-        workingDirectories = {
-          mode = "auto",
-        },
-        options = {
-          -- only for eslint@9
-          flags = { "unstable_config_lookup_from_file" },
-        },
-      },
-    })
-  end,
-
-  -- ["denols"] = function()
-  --   local lspconfig = require("lspconfig")
-  --   lspconfig.denols.setup({
-  --     root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-  --   })
-  -- end,
+local vtsls_inlay_hints = {
+  enumMemberValues = { enabled = true },
+  functionLikeReturnTypes = { enabled = true },
+  functionParameterTypes = { enabled = true },
+  parameterNames = { enabled = "all" },
+  parameterNameWhenArgumentMatchesNames = { enabled = true },
+  propertyDeclarationTypes = { enabled = true },
+  variableTypes = { enabled = true },
+  variableTypeWhenTypeMatchesNames = { enabled = true },
 }
+
+-- local handlers = {
+--   function(server_name)
+--     local capabilities = require("blink.cmp").get_lsp_capabilities()
+--     require("lspconfig")[server_name].setup({ capabilities })
+--   end,
+-- ["denols"] = function()
+--   local lspconfig = require("lspconfig")
+--   lspconfig.denols.setup({
+--     root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+--   })
+-- end,
+-- }
 
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     dependencies = {
       {
         "neovim/nvim-lspconfig",
       },
       {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
       },
       { "saghen/blink.cmp" },
       { "WhoIsSethDaniel/mason-tool-installer.nvim" },
@@ -75,6 +46,61 @@ return {
     },
     config = function()
       require("mason").setup()
+      local lspconfig = require("lspconfig")
+      lspconfig.lua_ls.setup({
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+          },
+        },
+      })
+      lspconfig.vtsls.setup({
+        single_file_support = false,
+        root_dir = lspconfig.util.root_pattern("package.json"),
+        on_attach = function(client, bufnr)
+          require("twoslash-queries").attach(client, bufnr)
+        end,
+        settings = {
+          complete_function_calls = true,
+          vtsls = {
+            autoUseWorkspaceTsdk = true,
+            experimental = {
+              completion = {
+                enableServerSideFuzzyMatch = true,
+              },
+            },
+          },
+          typescript = {
+            updateImportOnFileMove = { enabled = "always" },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            tsserver = {
+              maxTsServerMemory = 12288,
+            },
+            inlayHints = vtsls_inlay_hints,
+          },
+          javascript = { inlayHints = vtsls_inlay_hints },
+        },
+      })
+
+      lspconfig.eslint.setup({
+        settings = {
+          workingDirectory = {
+            mode = "auto",
+          },
+          workingDirectories = {
+            mode = "auto",
+          },
+          options = {
+            -- only for eslint@9
+            flags = { "unstable_config_lookup_from_file" },
+          },
+        },
+      })
+
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
@@ -86,7 +112,7 @@ return {
           -- "clangd",
         },
       })
-      require("mason-lspconfig").setup_handlers(handlers)
+
       require("mason-tool-installer").setup({
         ensure_installed = {
           -- "prettier",
