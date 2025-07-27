@@ -16,7 +16,7 @@ if status is-interactive
 
     set -gx EDITOR nvim
 
-    # git aliases
+    # git
     alias gaa="git add -A"
     alias gaap="git add -A -p"
     alias gce="git checkout"
@@ -29,8 +29,9 @@ if status is-interactive
     alias gbb="git branch"
     alias lg="lazygit"
     alias ld="lazydocker"
+    source ~/.config/fish/functions/git-things.fish
 
-    # bin aliases
+    # bin
     alias ls="exa"
     alias cat="bat"
     alias find="fd"
@@ -39,12 +40,8 @@ if status is-interactive
     alias vim="nvim"
     alias python="python3"
 
-    # directories aliases
+    # directories
     alias pro="cd ~/Projects"
-    alias dotfiles="cd ~/.config"
-    alias downloads="cd ~/Downloads"
-    alias home="cd ~"
-
 
     # config files
     alias nvimrc="vim ~/.config/nvim"
@@ -67,7 +64,6 @@ fish_vi_key_bindings
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 
-# source ~/.config/fish/functions/foo.fish
 eval (tmuxifier init - fish)
 
 if type -q tmux; and status is-interactive; and not string match -qr 'screen|tmux' -- "$TERM"; and test -z "$TMUX"

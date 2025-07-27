@@ -85,7 +85,6 @@ return {
           javascript = { inlayHints = vtsls_inlay_hints },
         },
       })
-
       lspconfig.eslint.setup({
         settings = {
           workingDirectory = {
@@ -135,11 +134,17 @@ return {
       vim.keymap.set("n", "<space>la", vim.lsp.buf.code_action, { desc = "[L]sp [A]ction" })
       vim.keymap.set("n", "<space>lc", function()
         local has_eslint = false
+        local has_biome = false
         local clients = vim.lsp.get_clients({ bufnr = 0 })
 
         for _, client in ipairs(clients) do
           if client.name == "eslint" then
             has_eslint = true
+            break
+          end
+
+          if client.name == "biome" then
+            has_biome = true
             break
           end
         end
@@ -148,10 +153,12 @@ return {
 
         if has_eslint and command_exists then
           vim.cmd("EslintFixAll")
+        elseif has_biome then
+          vim.notify("Not doable with Biom", vim.log.levels.INFO)
         else
-          vim.notify("ESLint not attached or EslintFixAll command not available", vim.log.levels.WARN)
+          vim.notify("No linter attached", vim.log.levels.WARN)
         end
-      end, { desc = "[L]sp ES[L]int Fix All" })
+      end, { desc = "[L]sp [L]int Fix All" })
     end,
   },
 }

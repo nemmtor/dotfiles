@@ -13,13 +13,6 @@ return {
     }
 
     local js_filetypes = require("config.constants").JAVASCRIPT_FIlE_TYPES
-    -- local js_formatter = function(bufnr)
-    --   if require("config.utils").is_deno_project(bufnr) then
-    --     return { "deno_fmt" }
-    --   end
-    --
-    --   return { "prettier" }
-    -- end
 
     --- @type table<string, string[]|function>
     local formatters_by_ft = {
@@ -30,12 +23,13 @@ return {
     }
 
     for _, ft in ipairs(js_filetypes) do
-      formatters_by_ft[ft] = { "prettier" }
+      -- formatters_by_ft[ft] = { "biome", "prettier", "deno_fmt" }
+      formatters_by_ft[ft] = { "biome" }
     end
 
     conform.setup({
       formatters_by_ft = formatters_by_ft,
-      -- format_on_save = format_settings,
+      format_on_save = format_settings,
     })
 
     vim.keymap.set("n", "<space>lf", function()
