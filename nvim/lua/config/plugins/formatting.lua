@@ -10,6 +10,7 @@ return {
       lsp_fallback = true,
       async = false,
       timeout_ms = 1000,
+      lsp_format = "never",
     }
 
     local js_filetypes = require("config.constants").JAVASCRIPT_FIlE_TYPES
@@ -24,7 +25,7 @@ return {
 
     for _, ft in ipairs(js_filetypes) do
       -- formatters_by_ft[ft] = { "biome", "prettier", "deno_fmt" }
-      formatters_by_ft[ft] = { "biome" }
+      formatters_by_ft[ft] = { "biome", "biome-organize-imports" }
     end
 
     conform.setup({
