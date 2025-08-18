@@ -9,6 +9,13 @@ local vtsls_inlay_hints = {
   variableTypeWhenTypeMatchesNames = { enabled = true },
 }
 
+local function get_capabilities()
+  local capabilities = require("blink.cmp").get_lsp_capabilities()
+  capabilities.general = capabilities.general or {}
+  capabilities.general.positionEncodings = { "utf-16" }
+  return capabilities
+end
+
 -- local handlers = {
 --   function(server_name)
 --     local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -48,6 +55,7 @@ return {
       require("mason").setup()
       local lspconfig = require("lspconfig")
       lspconfig.lua_ls.setup({
+        capabilities = get_capabilities(),
         settings = {
           Lua = {
             diagnostics = {
@@ -56,9 +64,16 @@ return {
           },
         },
       })
+      lspconfig.tailwindcss.setup({
+        capabilities = get_capabilities(),
+      })
+      lspconfig.biome.setup({
+        capabilities = get_capabilities(),
+      })
       lspconfig.vtsls.setup({
+        capabilities = get_capabilities(),
         single_file_support = false,
-        root_dir = lspconfig.util.root_pattern("package.json"),
+        root_dir = lspconfig.util.root_pattern(".git"),
         on_attach = function(client, bufnr)
           require("twoslash-queries").attach(client, bufnr)
         end,
@@ -79,26 +94,28 @@ return {
             },
             tsserver = {
               maxTsServerMemory = 12288,
+              pluginPaths = { "./node_modules" },
             },
             inlayHints = vtsls_inlay_hints,
           },
           javascript = { inlayHints = vtsls_inlay_hints },
         },
       })
-      lspconfig.eslint.setup({
-        settings = {
-          workingDirectory = {
-            mode = "auto",
-          },
-          workingDirectories = {
-            mode = "auto",
-          },
-          options = {
-            -- only for eslint@9
-            flags = { "unstable_config_lookup_from_file" },
-          },
-        },
-      })
+      -- TODO: enable in eslint repos
+      -- lspconfig.eslint.setup({
+      --   settings = {
+      --     workingDirectory = {
+      --       mode = "auto",
+      --     },
+      --     workingDirectories = {
+      --       mode = "auto",
+      --     },
+      --     options = {
+      --       -- only for eslint@9
+      --       flags = { "unstable_config_lookup_from_file" },
+      --     },
+      --   },
+      -- })
 
       require("mason-lspconfig").setup({
         ensure_installed = {
