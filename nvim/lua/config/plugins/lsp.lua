@@ -132,7 +132,7 @@ return {
       require("mason-tool-installer").setup({
         ensure_installed = {
           -- "prettier",
-          "eslint",
+          -- "eslint",
           "stylua",
           -- "clang-format",
         },
