@@ -40,6 +40,9 @@ if status is-interactive
     alias vim="nvim"
     alias python="python3"
 
+    # development
+    alias b="bun"
+
     # directories
     alias pro="cd ~/Projects"
 
