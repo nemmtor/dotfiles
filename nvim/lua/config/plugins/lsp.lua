@@ -53,8 +53,8 @@ return {
     },
     config = function()
       require("mason").setup()
-      local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({
+      local lspconfig = vim.lsp.config
+      lspconfig("lua_ls", {
         capabilities = get_capabilities(),
         settings = {
           Lua = {
@@ -64,16 +64,16 @@ return {
           },
         },
       })
-      lspconfig.tailwindcss.setup({
+      lspconfig("tailwindcss", {
         capabilities = get_capabilities(),
       })
-      lspconfig.biome.setup({
+      lspconfig("biome", {
         capabilities = get_capabilities(),
       })
-      lspconfig.vtsls.setup({
+      lspconfig("vtsls", {
         capabilities = get_capabilities(),
         single_file_support = false,
-        root_dir = lspconfig.util.root_pattern(".git"),
+        root_dir = require("lspconfig.util").root_pattern(".git"),
         on_attach = function(client, bufnr)
           require("twoslash-queries").attach(client, bufnr)
         end,
