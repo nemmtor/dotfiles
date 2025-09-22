@@ -10,3 +10,5 @@ tmux/plugins/**
 !wezterm/**
 !fish
 !fish/config.fish
+!biome.json
+!.editorconfig
