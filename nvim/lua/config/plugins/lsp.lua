@@ -1,14 +1,3 @@
-local vtsls_inlay_hints = {
-  enumMemberValues = { enabled = true },
-  functionLikeReturnTypes = { enabled = true },
-  functionParameterTypes = { enabled = true },
-  parameterNames = { enabled = "all" },
-  parameterNameWhenArgumentMatchesNames = { enabled = true },
-  propertyDeclarationTypes = { enabled = true },
-  variableTypes = { enabled = true },
-  variableTypeWhenTypeMatchesNames = { enabled = true },
-}
-
 local function get_capabilities()
   local capabilities = require("blink.cmp").get_lsp_capabilities()
   capabilities.general = capabilities.general or {}
@@ -53,8 +42,8 @@ return {
     },
     config = function()
       require("mason").setup()
-      local lspconfig = vim.lsp.config
-      lspconfig("lua_ls", {
+      local vim_lspconfig = vim.lsp.config
+      vim_lspconfig("lua_ls", {
         capabilities = get_capabilities(),
         settings = {
           Lua = {
@@ -64,42 +53,11 @@ return {
           },
         },
       })
-      lspconfig("tailwindcss", {
+      vim_lspconfig("tailwindcss", {
         capabilities = get_capabilities(),
       })
-      lspconfig("biome", {
+      vim_lspconfig("biome", {
         capabilities = get_capabilities(),
-      })
-      lspconfig("vtsls", {
-        capabilities = get_capabilities(),
-        single_file_support = false,
-        root_dir = require("lspconfig.util").root_pattern(".git"),
-        on_attach = function(client, bufnr)
-          require("twoslash-queries").attach(client, bufnr)
-        end,
-        settings = {
-          complete_function_calls = true,
-          vtsls = {
-            autoUseWorkspaceTsdk = true,
-            experimental = {
-              completion = {
-                enableServerSideFuzzyMatch = true,
-              },
-            },
-          },
-          typescript = {
-            updateImportOnFileMove = { enabled = "always" },
-            suggest = {
-              completeFunctionCalls = true,
-            },
-            tsserver = {
-              maxTsServerMemory = 12288,
-              pluginPaths = { "./node_modules" },
-            },
-            inlayHints = vtsls_inlay_hints,
-          },
-          javascript = { inlayHints = vtsls_inlay_hints },
-        },
       })
       -- TODO: enable in eslint repos
       -- lspconfig.eslint.setup({
@@ -120,7 +78,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
-          "vtsls",
+          -- "vtsls",
           -- "denols",
           "marksman",
           "tailwindcss",
