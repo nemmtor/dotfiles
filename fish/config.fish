@@ -42,6 +42,7 @@ if status is-interactive
 
     # development
     alias b="bun"
+    alias p="pnpm"
 
     # directories
     alias pro="cd ~/Projects"
