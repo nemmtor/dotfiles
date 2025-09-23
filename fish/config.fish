@@ -72,3 +72,8 @@ eval (tmuxifier init - fish)
 if type -q tmux; and status is-interactive; and not string match -qr 'screen|tmux' -- "$TERM"; and test -z "$TMUX"
     tmux
 end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]
+    . "$HOME/google-cloud-sdk/path.fish.inc"
+end
