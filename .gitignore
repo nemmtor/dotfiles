@@ -10,8 +10,7 @@ tmux/plugins/**
 !wezterm/**
 !fish
 !fish/config.fish
-!fish/functions/
-fish/functions/*
-!fish/functions/git-things.fish
+!fish/custom
+!fish/custom/*
 !biome.json
 !.editorconfig

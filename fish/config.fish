@@ -29,7 +29,7 @@ if status is-interactive
     alias gbb="git branch"
     alias lg="lazygit"
     alias ld="lazydocker"
-    source ~/.config/fish/functions/git-things.fish
+    source ~/.config/fish/custom/git-things.fish
 
     # bin
     alias ls="exa"
