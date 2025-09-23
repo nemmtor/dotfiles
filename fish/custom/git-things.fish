@@ -19,7 +19,11 @@ function git-branches-remote-gone
 end
 
 function git-remove-branches-remote-gone
-    git-branches-without-remote | xargs git branch -d
+    git-branches-remote-gone | xargs git branch -d
+end
+
+function git-remove-force-branches-remote-gone
+    git-branches-remote-gone | xargs git branch -D
 end
 
 function git-what-can-i-remove
