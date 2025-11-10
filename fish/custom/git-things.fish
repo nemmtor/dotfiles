@@ -69,3 +69,32 @@ function gwta --description "Create a new worktree in bare repo root"
         echo "✓ Changed directory to: $worktree_path"
     end
 end
+
+function gwtr --description "Remove a worktree in bare repo root"
+    # Get the bare repo root (common git dir)
+    set bare_root (git rev-parse --git-common-dir 2>/dev/null)
+
+    if test $status -ne 0
+        echo "Error: Not in a git repository"
+        return 1
+    end
+
+    # Check if arguments provided
+    if test (count $argv) -lt 1
+        echo "Usage: gwtt <worktree-name>"
+        echo "  gwtw feature-x              # Remove worktree"
+        return 1
+    end
+
+    set worktree_name $argv[1]
+    set worktree_path "$bare_root/code/$worktree_name"
+    set main_worktree_path "$bare_root/code/main"
+
+    git worktree remove $worktree_path
+
+    if test $status -eq 0
+        echo "✓ Removed worktree at: $worktree_path"
+        cd $main_worktree_path
+        echo "✓ Changed directory to: $main_worktree_path"
+    end
+end

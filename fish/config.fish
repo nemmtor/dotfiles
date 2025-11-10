@@ -1,7 +1,7 @@
 if status is-interactive
-    # PATHS
     set -lx PATH_DIRECTORIES \
         $HOME/.config/tmuxifier/bin \
+        $HOME/.config/herd-lite/bin \
         $HOME/.nvm \
         $HOME/vcpkg \
         $HOME/.cargo/bin \
@@ -12,6 +12,7 @@ if status is-interactive
 
     set -x PATH $PATH_DIRECTORIES $PATH
 
+    set -gx PHP_INI_SCAN_DIR $HOME/.config/herd-lite/bin
     set -gx GPG_TTY (tty)
 
     set -gx EDITOR nvim
