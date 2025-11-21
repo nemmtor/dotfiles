@@ -21,6 +21,7 @@ return {
       fish = { "fish_indent" },
       c = { "clang-format" },
       cpp = { "clang-format" },
+      ruby = { "standardrb" },
     }
 
     for _, ft in ipairs(js_filetypes) do
